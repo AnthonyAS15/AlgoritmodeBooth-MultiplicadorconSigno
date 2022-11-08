@@ -3,14 +3,14 @@
 // Universidad: TEC
 // Ingenieros: Anthony Artavia - Diego Huertas - Justin Segura
 // 
-// Nombre del Módulo: multiplicacion
+// Nombre del Mï¿½dulo: multiplicacion
 // Nombre del Proyecto: Algoritmo de Booth
-// Descripción: Realiza el cálculo de la multiplicación con el Algoritmo de Booth a partir de las entradas.
-//              Esto lo hace a partir de una máquina de estados
+// Descripciï¿½n: Realiza el cï¿½lculo de la multiplicaciï¿½n con el Algoritmo de Booth a partir de las entradas.
+//              Esto lo hace a partir de una mï¿½quina de estados
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-//Estructura que controla la multiplicación a partir de la máquina de estados.
+//Estructura que controla la multiplicaciï¿½n a partir de la mï¿½quina de estados.
 typedef struct {
     logic load_A;
     logic load_B;
@@ -19,7 +19,7 @@ typedef struct {
     logic add_sub;
 } mult_control_t;
 
-//Está encargado de realizar la multiplicación tomando en cuenta la máquina de estados.
+//Estï¿½ encargado de realizar la multiplicaciï¿½n tomando en cuenta la mï¿½quina de estados.
 module multiplicacion(
     input clk, rst,
     input reg valid,
@@ -28,21 +28,21 @@ module multiplicacion(
     output reg done = 0
     );
     
-    //Creación de la structura de control.
+    //Creaciï¿½n de la structura de control.
     mult_control_t mult_control;
     
-    //Últimos dos bits del producto.
+    //ï¿½ltimos dos bits del producto.
     logic [1:0] Q_LSB;
     
-    //Máquina de estados.
+    //Mï¿½quina de estados.
     maquina_estados FSM (clk, rst, valid, Q_LSB, mult_control, done);
     
-    //Multiplicación por medio del algoritmo de Booth.
+    //Multiplicaciï¿½n por medio del algoritmo de Booth.
     mult_with_no_sm Booth (clk, rst, A, B, mult_control, Q_LSB, Mult);
     
 endmodule
 
-//Máquina de estados para utilizar el algoritmo de Booth.
+//Mï¿½quina de estados para utilizar el algoritmo de Booth.
 module maquina_estados (
     input clk, rst,
     input reg valid,
@@ -54,7 +54,7 @@ module maquina_estados (
     //Cantidad de iteraciones a realizar.
     localparam N = 5'b10000;
     
-    //Codificación de estados.
+    //Codificaciï¿½n de estados.
     parameter
     Esperar = 3'b000,
     Inicio = 3'b001,
@@ -66,7 +66,7 @@ module maquina_estados (
     
     //Registro del estado actual.
     logic [2:0] estado = 0;
-    logic [4:0] iteraciones = 0;
+    logic [4:0] iteraciones = N;
     
     //Estado siguiente
     always @(posedge clk or posedge rst)
@@ -149,20 +149,18 @@ module maquina_estados (
             end
             Shift:
                 mult_control.shift_HQ_LQ_Q_1 <= 1;
+                iteraciones <= iteraciones -1;
             Comprobar:
             begin
                 mult_control.shift_HQ_LQ_Q_1 <= 1;
                 
-                if (iteraciones == N)
+                if (iteraciones == 0)
                 begin
                     done <= 1;
-                    iteraciones <= 0;
+                    iteraciones <= N;
                 end
                 else
-                begin
                     done <= 0;
-                    iteraciones <= iteraciones +1;
-                end
             end
         endcase
     end

@@ -3,9 +3,9 @@
 // Universidad: TEC
 // Ingenieros: Anthony Artavia - Diego Huertas - Justin Segura
 // 
-// Nombre del Módulo: top
+// Nombre del MÃ³dulo: top
 // Nombre del Proyecto: Algoritmo de Booth
-// Descripción: Archivo top del proyecto
+// DescripciÃ³n: Archivo top del proyecto
 // 
 //////////////////////////////////////////////////////////////////////////////////
 

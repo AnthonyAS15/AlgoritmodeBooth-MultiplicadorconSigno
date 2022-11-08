@@ -3,10 +3,10 @@
 // Universidad: TEC
 // Ingenieros: Anthony Artavia - Diego Huertas - Justin Segura
 // 
-// Nombre del M骴ulo: lectura
+// Nombre del M贸dulo: lectura
 // Nombre del Proyecto: Algoritmo de Booth
-// Descripci髇: Obtiene las entradas de los switches, usa un circuito antirrebote, da los datos para la multiplicaci髇
-//              cuando se oprima por 500 ms el bot髇 correspondiente y enciende LED's seg鷑 las entradas
+// Descripci贸n: Obtiene las entradas de los switches, usa un circuito antirrebote, da los datos para la multiplicaci贸n
+//              cuando se oprima por 500 ms el bot贸n correspondiente y enciende LED's seg煤n las entradas
 // 
 ////////////////////////////////////////////////////////////////////////////////// 
 
@@ -20,7 +20,7 @@ module lectura(
     output logic pb_salida
     );
     
-    //Conexiones del m骴ulo.
+    //Conexiones del m贸dulo.
     logic pb_sinrebote;
     
     //Circuitos antirrebote de los conmutadores.
@@ -45,7 +45,7 @@ module lectura(
     //Circuito antirrebote del pushbutton.
     antirrebote PB (CLK100MHZ, reset, pb_entrada, pb_sinrebote);
     
-    //Indica si el bot髇 ha sido presionado por 500 ms.
+    //Indica si el bot贸n ha sido presionado por 500 ms.
     inicio_multiplicacion Inicio (CLK100MHZ, reset, pb_sinrebote, pb_salida);
     
     //Encender las luces LED.
@@ -92,7 +92,7 @@ module clock_enable(
     
 endmodule
 
-//Flip-Flop D con se馻l de habilitaci髇 del reloj para el m骴ulo antirrebote.
+//Flip-Flop D con se帽al de habilitaci贸n del reloj para el m贸dulo antirrebote.
 module FF(
     input DFF_CLOCK, clock_enable, D,
     output reg Q = 0
@@ -112,10 +112,10 @@ module inicio_multiplicacion (
     );
     
     //Limite del contador para muestrear el valor en el tiempo deseado
-    localparam limite = 24999999; //Para obtener una se馻l dividida de 2 Hz
+    localparam limite = 24999999; //Para obtener una se帽al dividida de 2 Hz
     //Formula para la frecuencia deseada:
     //f = 1/T => f = 1/500X10^-3 => f = 2 Hz
-    //Formula para tener la frecuencia de la se馻l que se quiere:
+    //Formula para tener la frecuencia de la se帽al que se quiere:
     //limite = [100 Mhz/(2*Frecuencia_deseada)] - 1 => Frecuencia deseada = 24999999
     
     //Variables para realizar el muestreo de la entrada
@@ -160,7 +160,7 @@ module inicio_multiplicacion (
     
 endmodule
 
-//Enciende las luces LED que est醤 encima de cada switch y los indicadores del reset y el pushbutton.
+//Enciende las luces LED que est谩n encima de cada switch y los indicadores del reset y el pushbutton.
 module encender_lucesLED(
     input reset,
     input [7:0] A, B,

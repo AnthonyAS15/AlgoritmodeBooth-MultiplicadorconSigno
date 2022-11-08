@@ -3,9 +3,9 @@
 // Universidad: TEC
 // Ingenieros: Anthony Artavia - Diego Huertas - Justin Segura
 // 
-// Nombre del Módulo: tesetbench_lectura
+// Nombre del MÃ³dulo: tesetbench_lectura
 // Nombre del Proyecto: Algoritmo de Booth
-// Descripción: Testbench del módulo multiplicacion
+// DescripciÃ³n: Testbench del mÃ³dulo multiplicacion
 // 
 //////////////////////////////////////////////////////////////////////////////////
 

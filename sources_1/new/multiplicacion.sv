@@ -3,14 +3,14 @@
 // Universidad: TEC
 // Ingenieros: Anthony Artavia - Diego Huertas - Justin Segura
 // 
-// Nombre del M�dulo: multiplicacion
+// Nombre del Módulo: multiplicacion
 // Nombre del Proyecto: Algoritmo de Booth
-// Descripci�n: Realiza el c�lculo de la multiplicaci�n con el Algoritmo de Booth a partir de las entradas.
-//              Esto lo hace a partir de una m�quina de estados
+// Descripción: Realiza el cálculo de la multiplicación con el Algoritmo de Booth a partir de las entradas.
+//              Esto lo hace a partir de una máquina de estados
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-//Estructura que controla la multiplicaci�n a partir de la m�quina de estados.
+//Estructura que controla la multiplicación a partir de la máquina de estados.
 typedef struct {
     logic load_A;
     logic load_B;
@@ -19,7 +19,7 @@ typedef struct {
     logic add_sub;
 } mult_control_t;
 
-//Est� encargado de realizar la multiplicaci�n tomando en cuenta la m�quina de estados.
+//Est� encargado de realizar la multiplicación tomando en cuenta la máquina de estados.
 module multiplicacion(
     input clk, rst,
     input reg valid,
@@ -54,7 +54,7 @@ module maquina_estados (
     //Cantidad de iteraciones a realizar.
     localparam N = 5'b10000;
     
-    //Codificaci�n de estados.
+    //Codificación de estados.
     parameter
     Esperar = 3'b000,
     Inicio = 3'b001,

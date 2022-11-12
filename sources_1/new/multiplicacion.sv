@@ -19,7 +19,7 @@ typedef struct {
     logic add_sub;
 } mult_control_t;
 
-//Est� encargado de realizar la multiplicación tomando en cuenta la máquina de estados.
+//Está encargado de realizar la multiplicación tomando en cuenta la máquina de estados.
 module multiplicacion(
     input clk, rst,
     input reg valid,
@@ -28,21 +28,21 @@ module multiplicacion(
     output reg done = 0
     );
     
-    //Creaci�n de la structura de control.
+    //Creación de la structura de control.
     mult_control_t mult_control;
     
-    //�ltimos dos bits del producto.
+    //Últimos dos bits del producto.
     logic [1:0] Q_LSB;
     
-    //M�quina de estados.
+    //Máquina de estados.
     maquina_estados FSM (clk, rst, valid, Q_LSB, mult_control, done);
     
-    //Multiplicaci�n por medio del algoritmo de Booth.
+    //Multiplicación por medio del algoritmo de Booth.
     mult_with_no_sm Booth (clk, rst, A, B, mult_control, Q_LSB, Mult);
     
 endmodule
 
-//M�quina de estados para utilizar el algoritmo de Booth.
+//Máquina de estados para utilizar el algoritmo de Booth.
 module maquina_estados (
     input clk, rst,
     input reg valid,
@@ -52,7 +52,7 @@ module maquina_estados (
     );
     
     //Cantidad de iteraciones a realizar.
-    localparam N = 5'b10000;
+    localparam N = 16;
     
     //Codificación de estados.
     parameter
@@ -75,26 +75,25 @@ module maquina_estados (
             estado <= Esperar;
         else
         begin
+            estado <= Esperar;
             case (estado)
                 Esperar:
                 begin
                     if (valid)
                         estado <= Inicio;
-                    else
-                        estado <= Esperar;
                 end
                 Inicio:
                 begin
                     if (Q_LSB[1] == Q_LSB[0])
                         estado <= Shift;
-                    else if (Q_LSB[1] != Q_LSB[0])
+                    else
                         estado <= Agregar;
                 end
                 Agregar:
                 begin 
                     if (Q_LSB[1] == 0)
                         estado <= Sumar;
-                    else if (Q_LSB[1] == 1)
+                    else
                         estado <= Restar;
                 end
                 Sumar:
@@ -119,48 +118,53 @@ module maquina_estados (
     end
     
     //Salidas
-    always @(estado)
+    always @*
     begin
+        mult_control.load_A = 0;
+        mult_control.load_B = 0;
+        mult_control.add_sub = 0;
+        mult_control.load_add = 0;
+        mult_control.shift_HQ_LQ_Q_1 = 0;
         case (estado)
             Esperar:
             begin
-                mult_control.load_A <= 1;
-                mult_control.load_B <= 1;
+                mult_control.load_A = 1;
+                mult_control.load_B = 1;
             end
             Inicio:
             begin 
-                mult_control.load_A <= 0;
-                mult_control.load_B <= 0;
+                mult_control.load_A = 0;
+                mult_control.load_B = 0;
             end
             Agregar:
             begin 
-                mult_control.load_A <= 0;
-                mult_control.load_B <= 0;
+                mult_control.load_A = 0;
+                mult_control.load_B = 0;
             end
             Sumar:
             begin
-                mult_control.add_sub <= 0;
-                mult_control.load_add <= 1;
+                mult_control.add_sub = 0;
+                mult_control.load_add = 1;
             end
             Restar:
             begin
-                mult_control.add_sub <= 1;
-                mult_control.load_add <= 1;
+                mult_control.add_sub = 1;
+                mult_control.load_add = 1;
             end
             Shift:
-                mult_control.shift_HQ_LQ_Q_1 <= 1;
-                iteraciones <= iteraciones -1;
+                mult_control.shift_HQ_LQ_Q_1 = 1;
             Comprobar:
             begin
-                mult_control.shift_HQ_LQ_Q_1 <= 1;
+                mult_control.shift_HQ_LQ_Q_1 = 1;
                 
                 if (iteraciones == 0)
                 begin
-                    done <= 1;
-                    iteraciones <= N;
+                    done = 1;
+                    iteraciones = N;
                 end
                 else
-                    done <= 0;
+                    done = 0;
+                    iteraciones = iteraciones -4'b1;
             end
         endcase
     end
@@ -171,8 +175,8 @@ endmodule
 module mult_with_no_sm#(
     parameter N = 8
     ) (
-        input logic clk ,
-        input logic rst ,
+        input logic clk,
+        input logic rst,
         input logic [N-1:0] A,
         input logic [N-1:0] B,
         input mult_control_t mult_control,

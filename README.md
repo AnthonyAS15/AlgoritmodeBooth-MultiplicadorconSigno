@@ -44,9 +44,12 @@ El subsistema de lectura tomrá las dos entradas y las convierte a complemento a
 ### Subsistema de cálculo de multiplicación
 Este sistema recibe los operandos A y B del subsistema de lectura anterior, y realiza una operación de multiplicación  por medio del Algoritmo de Booth. Finalmente este bloque indicará al siguiente bloque consecutivo cuando el resultado de la multiplicación está
 estable para ser muestreado.
+
 #### Diagrama de Bloques:
 
-![Diagrama sin título (5)-Subsistema 2 drawio (1)](https://user-images.githubusercontent.com/110042626/198812350-79d802db-8fbb-45e6-8aa8-ada57055dbc2.png)
+
+![3cer proyecto Diseno Logico-Subsistema 2 0 drawio](https://user-images.githubusercontent.com/110042626/201456012-4d760fcf-3b4a-4200-9756-59e170fe5252.png)
+
 
 
 
@@ -54,7 +57,9 @@ estable para ser muestreado.
 Este sistema registrará el resultado del bloque anterior y lo convertirá en un formato BCD (Generando al menos 5 dígitos en BCD y uno de signo para el siguiente bloque). Se indicará al siguiente bloque cuando está lista la conversión para registrar.
 
 #### Diagrama de Bloques:
-![Diagrama sin título (5)-Subsistema 3 drawio](https://user-images.githubusercontent.com/110042626/198812357-3c1c59c6-df1b-49b1-8f92-94d53b48c1a7.png)
+
+
+![3cer proyecto Diseno Logico-Subsistema 3 0 drawio](https://user-images.githubusercontent.com/110042626/201456017-1e6f3a0f-4c56-4498-b2fd-ee737d16267e.png)
 
 
 

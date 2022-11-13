@@ -129,9 +129,9 @@ module inicio_multiplicacion (
     always @(pb_sinrebote)
     begin
         if (pb_sinrebote)
-            activador <= 1;
+            activador = 1;
         else
-            activador <= 0;
+            activador = 0;
     end
     
     always @(posedge clk or posedge reset)

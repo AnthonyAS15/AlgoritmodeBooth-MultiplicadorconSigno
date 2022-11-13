@@ -5,8 +5,9 @@
 // 
 // Nombre del Módulo: contador_actualizacion
 // Nombre del Proyecto: Algoritmo de Booth
-// Descripción: Realiza una cuenta para decidir el contador que se va a encender
-// 
+// Descripción: Realiza una cuenta para decidir el contador que se va a encender.
+//               Cuenta hasta cinco, ya que seis es la cantidad máxima de dígitos necesarios.
+//
 //////////////////////////////////////////////////////////////////////////////////
 
 module contador_actualizacion(
@@ -20,7 +21,7 @@ module contador_actualizacion(
             if (reset)
                 contador_actualizar <= 0;
             else
-                if(contador_actualizar == 3'b1001)
+                if(contador_actualizar == 3'b101)
                     contador_actualizar <= 0;
                 else
                     contador_actualizar <= contador_actualizar +1;

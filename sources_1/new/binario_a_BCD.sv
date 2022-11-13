@@ -5,7 +5,7 @@
 // 
 // Nombre del Módulo: binario_a_BCD
 // Nombre del Proyecto: Algoritmo de Booth
-// Descripción: Recibe el número binario resultante de la multiplicación y lo transforma a código BCD.
+// Descripción: Recibe el número binario resultante de la multiplicación y lo transforma a código BCD
 // 
 //////////////////////////////////////////////////////////////////////////////////
 

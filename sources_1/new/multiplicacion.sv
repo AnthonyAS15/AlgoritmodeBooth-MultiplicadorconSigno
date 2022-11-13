@@ -5,7 +5,7 @@
 // 
 // Nombre del Módulo: multiplicacion
 // Nombre del Proyecto: Algoritmo de Booth
-// Descripción: Realiza el cálculo de la multiplicación con el Algoritmo de Booth a partir de las entradas.
+// Descripción: Realiza el cálculo de la multiplicación con el algoritmo de Booth a partir de las entradas.
 //              Esto lo hace a partir de una máquina de estados
 // 
 //////////////////////////////////////////////////////////////////////////////////
@@ -25,10 +25,10 @@ module multiplicacion(
     input reg valid,
     input logic [7:0] A, B,
     output logic [15:0] Mult,
-    output reg done = 0
+    output reg done
     );
     
-    //Creación de la structura de control.
+    //Creación de la estructura de control.
     mult_control_t mult_control;
     
     //Últimos dos bits del producto.
@@ -52,7 +52,7 @@ module maquina_estados (
     );
     
     //Cantidad de iteraciones a realizar.
-    localparam N = 16;
+    localparam N = 5'b10000; //16 iteraciones en total, ya que los n�meros a multiplicar son de 8 bits.
     
     //Codificación de estados.
     parameter
@@ -68,7 +68,7 @@ module maquina_estados (
     logic [2:0] estado = 0;
     logic [4:0] iteraciones = N;
     
-    //Estado siguiente
+    //Estado siguiente.
     always @(posedge clk or posedge rst)
     begin
         if (rst)
@@ -164,7 +164,7 @@ module maquina_estados (
                 end
                 else
                     done = 0;
-                    iteraciones = iteraciones -4'b1;
+                    iteraciones = iteraciones -4'b0001;
             end
         endcase
     end

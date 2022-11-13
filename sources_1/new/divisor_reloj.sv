@@ -11,13 +11,13 @@
 
 
 module divisor_reloj(
-    input clk, // 100 Mhz
+    input clk,
     input reset,
     output reg clk_dividido
     );
-    //Divisor para obtener la división de salida deseada
-    localparam divisor = 4999; //Para obtener una señal dividida de 10 kHz
-    //Formula para tener la frecuencia de la señal que se quiere:
+    //Divisor para obtener la división de salida deseada.
+    localparam divisor = 4999; //Para obtener una señal dividida de 10 kHz.
+    //Fórmula para tener la frecuencia de la señal que se quiere:
     //Valor_dividido = [100 Mhz/(2*Frecuencia_deseada)] - 1 => Frecuencia deseada = 4999
     
     //Contador
@@ -26,10 +26,10 @@ module divisor_reloj(
     always @ (posedge clk or posedge reset)
         begin
             if (reset)
-                contador <= 0; //Resetear el valor
+                contador <= 0;
             else
                 if (contador == divisor)
-                    contador <= 0; //Resetear el valor
+                    contador <= 0;
                 else
                     contador <= contador +1;
         end
@@ -38,13 +38,13 @@ module divisor_reloj(
     always @ (posedge clk or posedge reset)
         begin
             if (reset)
-                clk_dividido <= ~clk_dividido; //Invertir la señal
+                clk_dividido <= ~clk_dividido;
             else
             begin
                 if (contador == divisor)
-                    clk_dividido <= ~clk_dividido; //Invertir la señal
+                    clk_dividido <= ~clk_dividido;
                 else
-                    clk_dividido <= clk_dividido; //Almacenar el valor
+                    clk_dividido <= clk_dividido;
             end
         end
     

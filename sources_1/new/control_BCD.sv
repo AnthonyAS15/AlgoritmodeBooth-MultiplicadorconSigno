@@ -1,0 +1,40 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Universidad: TEC
+// Ingenieros: Anthony Artavia - Diego Huertas - Justin Segura
+// 
+// Nombre del Módulo: control_BCD
+// Nombre del Proyecto: Algoritmo de Booth
+// Descripción: Decide en la posición donde se va a colocar el dígito a partir del contador
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module control_BCD(
+    input [20:0] codigo_BCD, //Código BCD que se recibe del módulo binario_a_BCD.
+    input [2:0] contador_actualizar,
+    output reg [3:0] digito = 0 //Dígito que se va a mostrar en la posición correspondiente.
+    );
+
+    always @ (codigo_BCD, contador_actualizar)
+        begin
+            case (contador_actualizar)
+            3'b000: //Dígito que se muestra en el primer dígito (unidades).
+                digito = codigo_BCD [3:0];
+            3'b001: //Dígito que se muestra en el segundo dígito (decenas).
+                digito = codigo_BCD [7:4];
+            3'b010: //Dígito que se muestra en el tercer dígito (centenas).
+                digito = codigo_BCD [11:8];
+            3'b011: //Dígito que se muestra en el cuarto dígito (unidades de mil).
+                digito = codigo_BCD [15:12];
+            3'b100: //Dígito que se muestra en el quinto dígito (decenas de mil).
+                digito = codigo_BCD [19:16];
+            3'b101: //Dígito que se muestra en el sexto dígito (signo).
+                if (codigo_BCD [20] == 1'b1)
+                    digito = 4'b0000;
+                else
+                    digito = 4'b1010; //Se va a usar el 10 binario para tomar en cuenta que es el signo negativo.
+            endcase
+        end
+    
+endmodule

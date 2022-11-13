@@ -1,4 +1,4 @@
-`timescale 1s / 1ps
+`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Universidad: TEC
 // Ingenieros: Anthony Artavia - Diego Huertas - Justin Segura

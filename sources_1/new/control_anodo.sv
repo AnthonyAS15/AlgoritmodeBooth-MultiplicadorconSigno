@@ -18,12 +18,20 @@ module control_anodo(
     always @ (contador_actualizar)
         begin
             case (contador_actualizar)
-                3'b000: anodo = 8'b11111110; //Encender dígito 1 (unidades).
-                3'b001: anodo = 8'b11111101; //Encender dígito 2 (decenas).
-                3'b010: anodo = 8'b11111011; //Encender dígito 3 (centenas).
-                3'b011: anodo = 8'b11110111; //Encender dígito 4 (unidades de mil).
-                3'b100: anodo = 8'b11101111; //Encender dígito 5 (decenas de mil).
-                3'b101: anodo = 8'b11011111; //Encender dígito 6 (signo).
+                3'b000:
+                    anodo = 8'b11111110; //Encender dígito 1 (unidades).
+                3'b001:
+                    anodo = 8'b11111101; //Encender dígito 2 (decenas).
+                3'b010:
+                    anodo = 8'b11111011; //Encender dígito 3 (centenas).
+                3'b011:
+                    anodo = 8'b11110111; //Encender dígito 4 (unidades de mil).
+                3'b100:
+                    anodo = 8'b11101111; //Encender dígito 5 (decenas de mil).
+                3'b101:
+                    anodo = 8'b11011111; //Encender dígito 6 (signo).
+                default:
+                    anodo = 8'b11111110; //Encender dígito 1 (unidades).
             endcase
         end
     

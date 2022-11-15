@@ -34,11 +34,11 @@ module multiplicacion(
     //Últimos dos bits del producto.
     logic [1:0] Q_LSB;
     
-    //Máquina de estados.
-    maquina_estados FSM (clk, rst, valid, Q_LSB, mult_control, done);
-    
     //Multiplicación por medio del algoritmo de Booth.
     mult_with_no_sm Booth (clk, rst, A, B, mult_control, Q_LSB, Mult);
+    
+    //Máquina de estados.
+    maquina_estados FSM (clk, rst, valid, Q_LSB, mult_control, done);
     
 endmodule
 
@@ -48,25 +48,25 @@ module maquina_estados (
     input reg valid,
     input [1:0] Q_LSB,
     output mult_control_t mult_control,
-    output reg done
+    output reg done = 0
     );
     
     //Cantidad de iteraciones a realizar.
-    localparam N = 5'b10000; //16 iteraciones en total, ya que los n�meros a multiplicar son de 8 bits.
+    localparam N = 4'b1000; //8 iteraciones en total, ya que los n�meros a multiplicar son de 8 bits.
     
     //Codificación de estados.
     parameter
-    Esperar = 3'b000,
-    Inicio = 3'b001,
-    Agregar = 3'b010,
-    Sumar = 3'b011,
-    Restar = 3'b100,
-    Shift = 3'b101,
-    Comprobar = 3'b110;
+        Esperar = 3'b000,
+        Inicio = 3'b001,
+        Agregar = 3'b010,
+        Sumar = 3'b011,
+        Restar = 3'b100,
+        Shift = 3'b101,
+        Comprobar = 3'b110;
     
     //Registro del estado actual.
-    logic [2:0] estado = 0;
-    logic [4:0] iteraciones = N;
+    logic [2:0] estado;
+    logic [3:0] iteraciones = N;
     
     //Estado siguiente.
     always @(posedge clk or posedge rst)
@@ -75,7 +75,6 @@ module maquina_estados (
             estado <= Esperar;
         else
         begin
-            estado <= Esperar;
             case (estado)
                 Esperar:
                 begin
@@ -113,6 +112,8 @@ module maquina_estados (
                         estado <= Inicio;
                     end
                 end
+                default:
+                    estado <= Esperar;
             endcase
         end
     end
@@ -143,19 +144,19 @@ module maquina_estados (
             end
             Sumar:
             begin
-                mult_control.add_sub = 0;
+                mult_control.add_sub = 1;
                 mult_control.load_add = 1;
             end
             Restar:
             begin
-                mult_control.add_sub = 1;
+                mult_control.add_sub = 0;
                 mult_control.load_add = 1;
             end
             Shift:
                 mult_control.shift_HQ_LQ_Q_1 = 1;
             Comprobar:
             begin
-                mult_control.shift_HQ_LQ_Q_1 = 1;
+                mult_control.shift_HQ_LQ_Q_1 = 0;
                 
                 if (iteraciones == 0)
                 begin
@@ -163,8 +164,10 @@ module maquina_estados (
                     iteraciones = N;
                 end
                 else
+                begin
                     done = 0;
                     iteraciones = iteraciones -4'b0001;
+                end
             end
         endcase
     end
@@ -186,7 +189,7 @@ module mult_with_no_sm#(
     
     logic [N-1:0] M;
     logic [N-1:0] adder_sub_out;
-    logic [2*N:0] shift;
+    logic [2*N:0] shift = 0;
     logic [N-1:0] HQ;
     logic [N-1:0] LQ;
     logic Q_1;
@@ -195,18 +198,27 @@ module mult_with_no_sm#(
     always_ff@ (posedge clk or posedge rst)
     begin
         if (rst)
-            M <= 'b0 ;
+            M <= 0;
         else
-            M <= (mult_control.load_A)? A : M;
+        begin
+            if (mult_control.load_A)
+            begin
+                M <= A;
+            end
+            else
+            begin
+                M <= M;
+            end
+        end
     end
     
     // adder / sub
     always_comb
     begin
         if (mult_control.add_sub)
-            adder_sub_out = M + HQ;
+            adder_sub_out = HQ + M;
         else
-            adder_sub_out = M - HQ;
+            adder_sub_out = HQ - M;
     end
     
     // shiftregisters
@@ -222,7 +234,7 @@ module mult_with_no_sm#(
     always_ff@ (posedge clk or posedge rst)
     begin
         if (rst)
-            shift <= 1'b0 ;
+            shift <= 0;
         else if (mult_control.shift_HQ_LQ_Q_1)
             // arithmeticshift
             shift <= $signed (shift)>>>1;
@@ -230,7 +242,7 @@ module mult_with_no_sm#(
         begin
             if (mult_control.load_B)
                 shift [N:1] <= B;
-            else if (mult_control.load_add)
+            if (mult_control.load_add)
                 shift [2*N:N+1] <= adder_sub_out;
         end
     end

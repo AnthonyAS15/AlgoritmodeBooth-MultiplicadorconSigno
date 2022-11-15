@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ms / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Universidad: TEC
 // Ingenieros: Anthony Artavia - Diego Huertas - Justin Segura
@@ -11,7 +11,7 @@
 ////////////////////////////////////////////////////////////////////////////////// 
 
 module lectura(
-    input CLK100MHZ, reset_entrada,
+    input CLK100MHZ, reset,
     input [7:0] A, B,
     input pb_entrada,
     output [15:0] LED,
@@ -22,38 +22,34 @@ module lectura(
     
     //Conexiones del módulo.
     logic pb_sinrebote;
-    logic reset_salida;
     
     //Circuitos antirrebote de los conmutadores.
-    antirrebote A0 (CLK100MHZ, reset_entrada, A[0], multiplicador[0]);
-    antirrebote A1 (CLK100MHZ, reset_entrada, A[1], multiplicador[1]);
-    antirrebote A2 (CLK100MHZ, reset_entrada, A[2], multiplicador[2]);
-    antirrebote A3 (CLK100MHZ, reset_entrada, A[3], multiplicador[3]);
-    antirrebote A4 (CLK100MHZ, reset_entrada, A[4], multiplicador[4]);
-    antirrebote A5 (CLK100MHZ, reset_entrada, A[5], multiplicador[5]);
-    antirrebote A6 (CLK100MHZ, reset_entrada, A[6], multiplicador[6]);
-    antirrebote A7 (CLK100MHZ, reset_entrada, A[7], multiplicador[7]);
+    antirrebote A0 (CLK100MHZ, reset, A[0], multiplicador[0]);
+    antirrebote A1 (CLK100MHZ, reset, A[1], multiplicador[1]);
+    antirrebote A2 (CLK100MHZ, reset, A[2], multiplicador[2]);
+    antirrebote A3 (CLK100MHZ, reset, A[3], multiplicador[3]);
+    antirrebote A4 (CLK100MHZ, reset, A[4], multiplicador[4]);
+    antirrebote A5 (CLK100MHZ, reset, A[5], multiplicador[5]);
+    antirrebote A6 (CLK100MHZ, reset, A[6], multiplicador[6]);
+    antirrebote A7 (CLK100MHZ, reset, A[7], multiplicador[7]);
 
-    antirrebote B0 (CLK100MHZ, reset_entrada, B[0], multiplicando[0]);
-    antirrebote B1 (CLK100MHZ, reset_entrada, B[1], multiplicando[1]);
-    antirrebote B2 (CLK100MHZ, reset_entrada, B[2], multiplicando[2]);
-    antirrebote B3 (CLK100MHZ, reset_entrada, B[3], multiplicando[3]);
-    antirrebote B4 (CLK100MHZ, reset_entrada, B[4], multiplicando[4]);
-    antirrebote B5 (CLK100MHZ, reset_entrada, B[5], multiplicando[5]);
-    antirrebote B6 (CLK100MHZ, reset_entrada, B[6], multiplicando[6]);
-    antirrebote B7 (CLK100MHZ, reset_entrada, B[7], multiplicando[7]);
+    antirrebote B0 (CLK100MHZ, reset, B[0], multiplicando[0]);
+    antirrebote B1 (CLK100MHZ, reset, B[1], multiplicando[1]);
+    antirrebote B2 (CLK100MHZ, reset, B[2], multiplicando[2]);
+    antirrebote B3 (CLK100MHZ, reset, B[3], multiplicando[3]);
+    antirrebote B4 (CLK100MHZ, reset, B[4], multiplicando[4]);
+    antirrebote B5 (CLK100MHZ, reset, B[5], multiplicando[5]);
+    antirrebote B6 (CLK100MHZ, reset, B[6], multiplicando[6]);
+    antirrebote B7 (CLK100MHZ, reset, B[7], multiplicando[7]);
     
     //Circuito antirrebote del pushbutton.
-    antirrebote PB (CLK100MHZ, reset_entrada, pb_entrada, pb_sinrebote);
-
-    //Circuito antirrebote del botón reset.
-    antirrebote RT (CLK100MHZ, reset_entrada, reset_entrada, reset_salida);
+    antirrebote PB (CLK100MHZ, reset, pb_entrada, pb_sinrebote);
     
     //Indica si el botón ha sido presionado por 500 ms.
-    inicio_multiplicacion Inicio (CLK100MHZ, reset_entrada, pb_sinrebote, pb_salida);
+    inicio_multiplicacion Inicio (CLK100MHZ, reset, pb_sinrebote, pb_salida);
     
     //Encender las luces LED.
-    encender_lucesLED LucesLED (reset_entrada, multiplicador, multiplicando, pb_salida, LED, LED_reset, LED_pb);
+    encender_lucesLED LucesLED (reset, multiplicador, multiplicando, pb_salida, LED, LED_reset, LED_pb);
    
 endmodule
 
@@ -116,7 +112,7 @@ module inicio_multiplicacion (
     );
     
     //Límite del contador para muestrear el valor en el tiempo deseado
-    localparam limite = 24999999; //Para obtener una señal dividida de 2 Hz
+    localparam limite = 24999999*2; //Para obtener una señal dividida de 2 Hz
     //Formula para la frecuencia deseada:
     //f = 1/T => f = 1/500X10^-3 => f = 2 Hz
     //Fórmula para tener la frecuencia de la señal que se quiere:

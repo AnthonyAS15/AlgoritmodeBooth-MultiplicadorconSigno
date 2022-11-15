@@ -3,30 +3,28 @@
 // Universidad: TEC
 // Ingenieros: Anthony Artavia - Diego Huertas - Justin Segura
 // 
-// Nombre del Módulo: testbench_multiplicacion
+// Nombre del Módulo: testbench_display_7segmentos
 // Nombre del Proyecto: Algoritmo de Booth
-// Descripción: Testbench del módulo multiplicacion
+// Descripción: Testbench del módulo display_7segmentos
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module testbench_multiplicacion;
+module testbench_display_7segmentos;
 
 //Entradas
-reg clk = 0, rst = 0;
-reg valid = 0;
-reg [7:0] A = 0, B = 0;
+reg clk = 0, reset = 0;
+reg [20:0] codigo_BCD = 0;
 //Salidas
-wire [15:0] Mult;
-wire done;
+wire [7:0] anodo;
+wire [6:0] catodo;
 
 //Unidad Bajo Prueba (UUT)
-multiplicacion uut (
-    .clk(clk), .rst(rst),
-    .valid(valid),
-    .A(A), .B(B),
-    .Mult(Mult),
-    .done(done)
+display_7segmentos uut (
+    .clk(clk), .reset(reset),
+    .codigo_BCD(codigo_BCD),
+    .anodo(anodo),
+    .catodo(catodo)
     );
 
 //Variables para hacer las pruebas
@@ -34,9 +32,7 @@ always #5 clk = ~clk;
 
 initial
 begin
-    valid = 1;
-    A = 7;
-    B = 4;
+    codigo_BCD = 21'b000000000000000101000;
     
     #10 $finish;
     

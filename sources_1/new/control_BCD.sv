@@ -19,21 +19,23 @@ module control_BCD(
     always @ (codigo_BCD, contador_actualizar)
         begin
             case (contador_actualizar)
-            3'b000: //Dígito que se muestra en el primer dígito (unidades).
-                digito = codigo_BCD [3:0];
-            3'b001: //Dígito que se muestra en el segundo dígito (decenas).
-                digito = codigo_BCD [7:4];
-            3'b010: //Dígito que se muestra en el tercer dígito (centenas).
-                digito = codigo_BCD [11:8];
-            3'b011: //Dígito que se muestra en el cuarto dígito (unidades de mil).
-                digito = codigo_BCD [15:12];
-            3'b100: //Dígito que se muestra en el quinto dígito (decenas de mil).
-                digito = codigo_BCD [19:16];
-            3'b101: //Dígito que se muestra en el sexto dígito (signo).
-                if (codigo_BCD [20] == 1'b1)
-                    digito = 4'b0000;
+            3'b000: 
+                digito = codigo_BCD [3:0]; //Dígito que se muestra en el primer dígito (unidades).
+            3'b001: 
+                digito = codigo_BCD [7:4]; //Dígito que se muestra en el segundo dígito (decenas).
+            3'b010: 
+                digito = codigo_BCD [11:8]; //Dígito que se muestra en el tercer dígito (centenas).
+            3'b011: 
+                digito = codigo_BCD [15:12]; //Dígito que se muestra en el cuarto dígito (unidades de mil).
+            3'b100: 
+                digito = codigo_BCD [19:16]; //Dígito que se muestra en el quinto dígito (decenas de mil).
+            3'b101: 
+                if (codigo_BCD [20] == 1'b0) //Dígito que se muestra en el sexto dígito (signo).
+                    digito = 4'b0000; //Si el signo es positivo, se escribir� un cero, en la sexta posici�n.
                 else
                     digito = 4'b1010; //Se va a usar el 10 binario para tomar en cuenta que es el signo negativo.
+            default:
+                digito = codigo_BCD [3:0]; //Dígito que se muestra en el primer dígito (unidades).
             endcase
         end
     

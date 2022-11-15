@@ -52,7 +52,7 @@ module maquina_estados (
     );
     
     //Cantidad de iteraciones a realizar.
-    localparam N = 4'b1000; //8 iteraciones en total, ya que los n�meros a multiplicar son de 8 bits.
+    localparam N = 4'b1000; //8 iteraciones en total, ya que los números a multiplicar son de 8 bits.
     
     //Codificación de estados.
     parameter

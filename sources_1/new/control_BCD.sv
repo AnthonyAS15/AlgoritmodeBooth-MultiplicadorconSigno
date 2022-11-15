@@ -31,7 +31,7 @@ module control_BCD(
                 digito = codigo_BCD [19:16]; //Dígito que se muestra en el quinto dígito (decenas de mil).
             3'b101: 
                 if (codigo_BCD [20] == 1'b0) //Dígito que se muestra en el sexto dígito (signo).
-                    digito = 4'b0000; //Si el signo es positivo, se escribir� un cero, en la sexta posici�n.
+                    digito = 4'b0000; //Si el signo es positivo, se escribirá un cero, en la sexta posición.
                 else
                     digito = 4'b1010; //Se va a usar el 10 binario para tomar en cuenta que es el signo negativo.
             default:

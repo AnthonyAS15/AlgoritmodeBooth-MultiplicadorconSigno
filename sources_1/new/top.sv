@@ -37,15 +37,21 @@ module top(
     begin
         if (pb_salida)
         begin
-            valid = pb_salida;
-            A_sinrebote = multiplicador;
-            B_sinrebote = multiplicando;
+            valid <= pb_salida;
+            A_sinrebote <= multiplicador;
+            B_sinrebote <= multiplicando;
+        end
+        else if (reset)
+        begin
+            valid <= 0;
+            A_sinrebote <= 0;
+            B_sinrebote <= 0;
         end
         else
         begin
             valid = valid;
-            A_sinrebote = A_sinrebote;
-            B_sinrebote = B_sinrebote;
+            A_sinrebote <= A_sinrebote;
+            B_sinrebote <= B_sinrebote;
         end
     end
     
@@ -55,24 +61,31 @@ module top(
     begin
         if (done1)
         begin
-            signo = Mult[15];
-            bin = Mult[14:0];
+            signo <= Mult[15];
+            bin <= Mult[14:0];
+        end
+        else if (reset)
+        begin
+            signo <= 0;
+            bin <= 0;
         end
         else
         begin
-            signo = signo;
-            bin = bin;
+            signo <= signo;
+            bin <= bin;
         end
     end
     
     binario_a_BCD BCD (CLK100MHZ, reset, done1, bin, codigo_BCD_sin_signo, done2);
     
-    always@*
+    always @*
     begin
         if (done2)
-        codigo_BCD = {signo, codigo_BCD_sin_signo};
+            codigo_BCD <= {signo, codigo_BCD_sin_signo};
+        else if (reset)
+            codigo_BCD <= 0;
         else
-        codigo_BCD = codigo_BCD;
+            codigo_BCD <= codigo_BCD;
     end
 
     display_7segmentos Display (CLK100MHZ, reset, codigo_BCD, anodo, catodo);

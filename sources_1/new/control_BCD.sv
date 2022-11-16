@@ -5,7 +5,7 @@
 // 
 // Nombre del Módulo: control_BCD
 // Nombre del Proyecto: Algoritmo de Booth
-// Descripción: Decide en la posición donde se va a colocar el dígito a partir del contador
+// Descripción: Decide la posición donde se va a colocar el dígito a partir del contador
 // 
 //////////////////////////////////////////////////////////////////////////////////
 

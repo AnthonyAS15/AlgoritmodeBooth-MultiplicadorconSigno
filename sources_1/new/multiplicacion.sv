@@ -34,11 +34,12 @@ module multiplicacion(
     //Últimos dos bits del producto.
     logic [1:0] Q_LSB;
     
+    //Máquina de estados.
+    maquina_estados FSM (clk, rst, valid, Q_LSB, mult_control, done);
+    
     //Multiplicación por medio del algoritmo de Booth.
     mult_with_no_sm Booth (clk, rst, A, B, mult_control, Q_LSB, Mult);
     
-    //Máquina de estados.
-    maquina_estados FSM (clk, rst, valid, Q_LSB, mult_control, done);
     
 endmodule
 
@@ -48,7 +49,7 @@ module maquina_estados (
     input reg valid,
     input [1:0] Q_LSB,
     output mult_control_t mult_control,
-    output reg done = 0
+    output reg done
     );
     
     //Cantidad de iteraciones a realizar.

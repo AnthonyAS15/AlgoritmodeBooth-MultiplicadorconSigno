@@ -111,6 +111,9 @@ Diagrama que muestra cada uno de los estados que tendrá el circuito durante su 
 
 ## Análisis de principales problemas hallados durante el trabajo y de las soluciones aplicadas
 
+Dentro de las dificultades al realizar el subsistema 2 fue lograr elaborar la estructura que proporcionaba el profesor y manipular el código que él nos había pasado. Lo que llevo consigo distintas revisiones para lograr entenderlo, sin embargo, la solución vino cuando tuvimos una reunión con el profesor donde pudimos revisarlo junto con él, y de esta manera pudimos entenderlo.
+
+De la misma manera, una de las dificultades al realizar las simulaciones, fue que no se estaba representando el resultado esperado en el display de 7segmentos de la Nexys debido a un problema en el código. Por este motivo, se llevó a cabo una larga depuración, donde se logró encontrar y corregirlo, de esta manera pudimos lograr representar el resultado de la conversión de manera correcta.
 
 
 

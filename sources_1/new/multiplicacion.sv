@@ -53,7 +53,7 @@ module maquina_estados (
     );
     
     //Cantidad de iteraciones a realizar.
-    localparam N = 4'b1000; //8 iteraciones en total, ya que los números a multiplicar son de 8 bits.
+    localparam N = 4'd8; //8 iteraciones en total, ya que los números a multiplicar son de 8 bits.
     
     //Codificación de estados.
     parameter
@@ -70,7 +70,7 @@ module maquina_estados (
     logic [3:0] iteraciones = N;
     
     //Estado siguiente.
-    always @(posedge clk or posedge rst)
+    always @(posedge clk)
     begin
         if (rst)
             estado <= Esperar;
@@ -120,54 +120,54 @@ module maquina_estados (
     end
     
     //Salidas
-    always @*
+    always @(negedge clk)
     begin
-        mult_control.load_A = 0;
-        mult_control.load_B = 0;
-        mult_control.add_sub = 0;
-        mult_control.load_add = 0;
-        mult_control.shift_HQ_LQ_Q_1 = 0;
+        mult_control.load_A <= 0;
+        mult_control.load_B <= 0;
+        mult_control.add_sub <= 0;
+        mult_control.load_add <= 0;
+        mult_control.shift_HQ_LQ_Q_1 <= 0;
         case (estado)
             Esperar:
             begin
-                mult_control.load_A = 1;
-                mult_control.load_B = 1;
+                mult_control.load_A <= 1;
+                mult_control.load_B <= 1;
             end
             Inicio:
             begin 
-                mult_control.load_A = 0;
-                mult_control.load_B = 0;
+                mult_control.load_A <= 0;
+                mult_control.load_B <= 0;
             end
             Agregar:
             begin 
-                mult_control.load_A = 0;
-                mult_control.load_B = 0;
+                mult_control.load_A <= 0;
+                mult_control.load_B <= 0;
             end
             Sumar:
             begin
-                mult_control.add_sub = 1;
-                mult_control.load_add = 1;
+                mult_control.add_sub <= 1;
+                mult_control.load_add <= 1;
             end
             Restar:
             begin
-                mult_control.add_sub = 0;
-                mult_control.load_add = 1;
+                mult_control.add_sub <= 0;
+                mult_control.load_add <= 1;
             end
             Shift:
-                mult_control.shift_HQ_LQ_Q_1 = 1;
+                mult_control.shift_HQ_LQ_Q_1 <= 1;
             Comprobar:
             begin
-                mult_control.shift_HQ_LQ_Q_1 = 0;
+                mult_control.shift_HQ_LQ_Q_1 <= 0;
                 
-                if (iteraciones == 0)
+                if (iteraciones == 4'd0)
                 begin
-                    done = 1;
-                    iteraciones = N;
+                    done <= 1'b1;
+                    iteraciones <= N;
                 end
                 else
                 begin
-                    done = 0;
-                    iteraciones = iteraciones -4'b0001;
+                    done <= 1'b0;
+                    iteraciones <= iteraciones -4'd1;
                 end
             end
         endcase
@@ -196,7 +196,7 @@ module mult_with_no_sm#(
     logic Q_1;
     
     //reg_M
-    always_ff@ (posedge clk or posedge rst)
+    always_ff@ (posedge clk)
     begin
         if (rst)
             M <= 0;
@@ -232,7 +232,7 @@ module mult_with_no_sm#(
         Q_LSB = {LQ[0], Q_1};
     end
     
-    always_ff@ (posedge clk or posedge rst)
+    always_ff@ (posedge clk)
     begin
         if (rst)
             shift <= 0;

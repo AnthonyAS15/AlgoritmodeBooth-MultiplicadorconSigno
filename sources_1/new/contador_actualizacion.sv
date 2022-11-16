@@ -16,12 +16,12 @@ module contador_actualizacion(
     output reg [2:0] contador_actualizar = 0
     );
 
-    always @ (posedge reloj_actualizacion or posedge reset)
+    always @ (posedge reloj_actualizacion)
         begin
             if (reset)
                 contador_actualizar <= 0;
             else
-                if(contador_actualizar == 3'b101)
+                if(contador_actualizar == 3'b110)
                     contador_actualizar <= 0;
                 else
                     contador_actualizar <= contador_actualizar +1;

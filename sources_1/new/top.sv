@@ -33,7 +33,7 @@ module top(
     
     lectura Lectura (CLK100MHZ, reset, A, B, pb_entrada, LED, LED_reset, LED_pb, multiplicador, multiplicando, pb_salida);
     
-    always @*
+    always @(posedge CLK100MHZ)
     begin
         if (pb_salida)
         begin
@@ -49,7 +49,6 @@ module top(
         end
         else
         begin
-            valid = valid;
             A_sinrebote <= A_sinrebote;
             B_sinrebote <= B_sinrebote;
         end
@@ -57,7 +56,7 @@ module top(
     
     multiplicacion Multiplicacion (CLK100MHZ, reset, valid, A_sinrebote, B_sinrebote, Mult, done1);
     
-    always @*
+    always @(posedge CLK100MHZ)
     begin
         if (done1)
         begin
@@ -78,7 +77,7 @@ module top(
     
     binario_a_BCD BCD (CLK100MHZ, reset, done1, bin, codigo_BCD_sin_signo, done2);
     
-    always @*
+    always @(posedge CLK100MHZ)
     begin
         if (done2)
             codigo_BCD <= {signo, codigo_BCD_sin_signo};

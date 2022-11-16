@@ -23,7 +23,7 @@ module divisor_reloj(
     //Contador
     reg [25:0] contador = 0;
     
-    always @ (posedge clk or posedge reset)
+    always @ (posedge clk)
         begin
             if (reset)
                 contador <= 0;
@@ -35,7 +35,7 @@ module divisor_reloj(
         end
     
     // Divisor de reloj
-    always @ (posedge clk or posedge reset)
+    always @ (posedge clk)
         begin
             if (reset)
                 clk_dividido <= ~clk_dividido;

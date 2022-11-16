@@ -3,14 +3,14 @@
 // Universidad: TEC
 // Ingenieros: Anthony Artavia - Diego Huertas - Justin Segura
 // 
-// Nombre del Módulo: testbench_top
+// Nombre del Módulo: testbench_algoritmo_booth
 // Nombre del Proyecto: Algoritmo de Booth
 // Descripción: Testbench del módulo top
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module testbench_top;
+module testbench_algoritmo_booth;
 
 //Entradas
 reg CLK100MHZ = 0, reset = 0;
@@ -38,8 +38,8 @@ always #5 CLK100MHZ = ~CLK100MHZ;
 
 initial
 begin
-    A = 8'b00000100;
-    B = 8'b00000111;
+    A = 8'b00000111;
+    B = 8'b00000100;
     pb_entrada = 1;
     
     #10 $finish;

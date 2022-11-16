@@ -26,11 +26,11 @@ module binario_a_BCD(
     parameter Final = 3'b100;
     
     //reg [11:0]  bin_data = 0;
-    reg [27:0] datos_BCD = 0;
+    reg [34:0] datos_BCD = 0;
     reg [2:0] estado = 0;
     reg ocupado = 0;
     reg [3:0] sh_contador  = 0;
-    reg [1:0] agregar_contador = 0;
+    reg [2:0] agregar_contador = 0;
     reg resultado = 0;
     
     
@@ -42,7 +42,7 @@ module binario_a_BCD(
             begin
                 if(~ocupado)
                     begin
-                    datos_BCD <= {16'b0, bin};
+                    datos_BCD <= {20'b0, bin};
                     estado <= Inicio;
                     end
             end
@@ -51,13 +51,13 @@ module binario_a_BCD(
         
             Inactivo:
                 begin
-                    resultado <= 0;
-                    ocupado <= 0;
+                    resultado <= 1'b0;
+                    ocupado <= 1'b0;
                 end
                 
             Inicio:
                 begin
-                ocupado <= 1;
+                ocupado <= 1'b1;
                 estado <= Agregar;
                 end
                     
@@ -67,36 +67,44 @@ module binario_a_BCD(
                 case(agregar_contador)
                     0:
                         begin
-                        if(datos_BCD[15:12] > 4)
+                        if(datos_BCD[18:15] > 4'd4)
                             begin
-                                datos_BCD[27:12] <= datos_BCD[27:12] + 3;
+                                datos_BCD[34:15] <= datos_BCD[34:15] + 20'd3;
                             end
-                            agregar_contador <= agregar_contador + 1;
+                            agregar_contador <= agregar_contador + 3'd1;
                         end
                     
-                    1:
+                    3'd1:
                         begin
-                        if(datos_BCD[19:16] > 4)
+                        if(datos_BCD[22:19] > 4'd4)
                             begin
-                                datos_BCD[27:16] <= datos_BCD[27:16] + 3;
+                                datos_BCD[34:19] <= datos_BCD[34:19] + 16'd3;
                             end
-                            agregar_contador <= agregar_contador + 1;
+                            agregar_contador <= agregar_contador + 3'd1;
                         end
                         
-                    2:
+                    3'd2:
                         begin
-                        if((agregar_contador == 2) && (datos_BCD[23:20] > 4))
+                        if((agregar_contador == 3'd2) && (datos_BCD[26:23] > 4'd4))
                             begin
-                                datos_BCD[27:20] <= datos_BCD[27:20] + 3;
+                                datos_BCD[34:23] <= datos_BCD[34:23] + 12'd3;
                             end
-                            agregar_contador <= agregar_contador + 1;
+                            agregar_contador <= agregar_contador + 3'd1;
                         end
                         
-                    3:
+                    3'd3:
                         begin
-                        if((agregar_contador == 3) && (datos_BCD[27:24] > 4))
+                        if((agregar_contador == 3'd3) && (datos_BCD[30:27] > 4'd4))
                             begin
-                                datos_BCD[27:24] <= datos_BCD[27:24] + 3;
+                                datos_BCD[34:27] <= datos_BCD[34:27] + 8'd3;
+                            end
+                            agregar_contador <= agregar_contador + 3'd1;
+                        end
+                    3'd4:
+                        begin
+                        if((agregar_contador == 3'd4) && (datos_BCD[34:31] > 4'd4))
+                            begin
+                                datos_BCD[34:31] <= datos_BCD[34:31] + 4'd3;
                             end
                             agregar_contador <= 0;
                             estado <= Shift;
@@ -106,12 +114,12 @@ module binario_a_BCD(
                 
             Shift:
                 begin
-                sh_contador <= sh_contador + 1;
+                sh_contador <= sh_contador + 4'd1;
                 datos_BCD <= datos_BCD << 1;
                 
-                if(sh_contador == 11)
+                if(sh_contador == 4'd14)
                     begin
-                    sh_contador <= 0;
+                    sh_contador <= 4'd0;
                     estado <= Final;
                     end
                 else
@@ -124,7 +132,7 @@ module binario_a_BCD(
             
             Final:
                 begin
-                resultado <= 1;
+                resultado <= 1'b1;
                 estado <= Inactivo;
                 end
             default:
@@ -135,6 +143,6 @@ module binario_a_BCD(
             endcase
             
         end
-    assign codigo_BCD = datos_BCD[27:12];
+    assign codigo_BCD = datos_BCD[34:15];
     assign done = resultado;
 endmodule

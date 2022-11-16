@@ -112,7 +112,7 @@ module inicio_multiplicacion (
     );
     
     //Límite del contador para muestrear el valor en el tiempo deseado
-    localparam limite = 24999999*2; //Para obtener una señal dividida de 2 Hz
+    localparam limite = 249999*2; //Para obtener una señal dividida de 2 Hz
     //Formula para la frecuencia deseada:
     //f = 1/T => f = 1/500X10^-3 => f = 2 Hz
     //Fórmula para tener la frecuencia de la señal que se quiere:
@@ -130,7 +130,7 @@ module inicio_multiplicacion (
             activador = 0;
     end
     
-    always @(posedge clk or posedge reset)
+    always @(posedge clk)
     begin
         if(reset)
             contador <= 0;
@@ -143,7 +143,7 @@ module inicio_multiplicacion (
         end
     end
     
-    always @(posedge clk or posedge reset)
+    always @(posedge clk)
     begin
         if(reset)
             pb_salida <= 0;

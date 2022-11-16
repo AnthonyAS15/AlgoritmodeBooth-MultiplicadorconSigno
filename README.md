@@ -26,9 +26,15 @@ estable para ser muestreado.
 Este sistema registrará el resultado del bloque anterior y lo convertirá en un formato BCD (Generando al menos 5 dígitos en BCD y uno de signo para el siguiente bloque). Se indicará al siguiente bloque cuando está lista la conversión para registrar.
 
 
-
 ###  Subsistema de despliegue en display de 7 segmentos
 El subsistema va a tomar resultado de la multiplicación en BCD. Luego de esto, los datos recibidos lo representará en los dispositivos 7 segmentos disponibles en la placa, de forma decimal e incluyendo el signo. 
+
+
+
+
+
+
+
 
 
 ## Funcionamiento fundamental
@@ -36,8 +42,6 @@ El subsistema va a tomar resultado de la multiplicación en BCD. Luego de esto, 
 El subsistema de lectura tomrá las dos entradas y las convierte a complemento a 2. Luego de esto, captura el sistema principal, por medio de un sistema antirebote el cual le da paso a realizar el algoritmo de Booth, previo a esto, debe enviarse al siguiente subsistema.
 #### Diagrama de Bloques:
 ![P3_0](https://user-images.githubusercontent.com/111217127/198816294-17a4e32f-e5b1-48bf-97a1-1da85629cf20.jpeg)
-
-
 
 
 
@@ -65,5 +69,36 @@ Este sistema registrará el resultado del bloque anterior y lo convertirá en un
 
 ###  Subsistema de despliegue en display de 7 segmentos
 El subsistema va a tomar resultado de la multiplicación en BCD. Luego de esto, los datos recibidos lo representará en los dispositivos 7 segmentos disponibles en la placa, de forma decimal e incluyendo el signo. 
+
+#### Diagrama de Bloques:
+
+
+
+
+
+
+
+## Diagramas de estado de todas las FSM diseñadas (si existen), según descritos en la sección 6.
+
+
+## Ejemplo y análisis de una simulación funcional del sistema completo, desde el estímulo de entrada
+hasta el manejo de los 7 segmentos.
+
+
+## Análisis de consumo de recursos en la FPGA (LUTs, FFs, etc.) y del consumo de potencia que reporta
+la herramienta Vivado.
+
+
+## Reporte de velocidades máximas de reloj posibles en el diseño (mínima frecuencia de reloj para este
+diseño: 50 MHz).
+
+
+## Análisis de principales problemas hallados durante el trabajo y de las soluciones aplicadas.
+
+
+
+
+
+
 
 

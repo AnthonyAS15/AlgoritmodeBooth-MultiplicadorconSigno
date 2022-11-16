@@ -44,7 +44,8 @@ El subsistema de lectura tomrá las dos entradas y las convierte a complemento a
 
 #### Diagrama de Bloques:
 
-![P3_0](https://user-images.githubusercontent.com/111217127/198816294-17a4e32f-e5b1-48bf-97a1-1da85629cf20.jpeg)
+![198816232-9513c6d3-9dec-4847-9999-13ab040475af](https://user-images.githubusercontent.com/110042626/202111505-2065b016-055c-4129-badb-ab7373984a40.jpg)
+
 
 
 

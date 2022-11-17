@@ -86,11 +86,14 @@ Es la representación completa del circuito con cada uno de los subsistemas  exi
 
 
 ## Diagramas de estado de las FSM diseñadas
-Diagrama que muestra cada uno de los estados que tendrá el circuito durante su utilización, e indica cuales requisitos existen para poder ingresar a cada caso de uso. Basicamente, el diagrama de estados nos indicara el proceso que que ejecutara la ruta de datos desde la salida hasta la entrada, con una descripción comportamental de cada sub-bloque dentro de los subsistemas
+Diagrama que muestra cada uno de los estados que tendrá el circuito durante su utilización, e indica cuales requisitos existen para poder ingresar a cada caso de uso. Basicamente, el diagrama de estados nos indicara el proceso que que ejecutara la ruta de datos desde la salida hasta la entrada, con una descripción comportamental de cada sub-bloque dentro de los subsistemas.
+
+
+### Diagramas de estado **Subsistema de cálculo de multiplicación**
 
 ![201811087-cbd59364-3eaf-48af-992a-df780de26ffa](https://user-images.githubusercontent.com/110042626/202109231-7255fb0c-e2e1-49bc-abd8-68e1ee9d09cb.png)
 
-
+### Diagramas de estado **Subsistema conversión de binario a representación BCD**
 
 
 ## Ejemplo y análisis de una simulación funcional del sistema completo

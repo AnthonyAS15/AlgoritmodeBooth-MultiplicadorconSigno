@@ -117,7 +117,6 @@ Diagrama que muestra cada uno de los estados que tendrá el circuito durante su 
 
 ## Reporte de velocidades máximas de reloj (mínima frecuencia de reloj para este diseño: 50 MHz)
 
-![fec999c2-0f7b-4b42-b83f-d93c47712d88](https://user-images.githubusercontent.com/110042626/202401908-c0da8faa-1325-40ee-8775-2bd29a91f93e.jpg)
 
 ![202389557-665d987d-8ea6-4e25-a6ad-9e7ce6dffcd3](https://user-images.githubusercontent.com/110042626/202401457-292c3aab-818d-431e-89f5-fb2f002ba7e9.jpg)
 

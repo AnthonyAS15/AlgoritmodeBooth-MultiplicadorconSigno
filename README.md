@@ -122,7 +122,7 @@ Diagrama que muestra cada uno de los estados que tendrá el circuito durante su 
 
 ![202389557-665d987d-8ea6-4e25-a6ad-9e7ce6dffcd3](https://user-images.githubusercontent.com/110042626/202401457-292c3aab-818d-431e-89f5-fb2f002ba7e9.jpg)
 
-Como se puede observar en la imagen anterior, especificamente en el apartado de Setup, se puede ver quer ta velocidad máxima del reloj posible corresponde a aproximadamente 1.65 ns, lo cual equivale a 625 Mhz.
+Como se puede observar en la imagen anterior, especificamente en el apartado de Setup, se puede ver quer la velocidad máxima del reloj posible corresponde a aproximadamente 1.65 ns, lo cual equivale a 606 Mhz.
 
 
 

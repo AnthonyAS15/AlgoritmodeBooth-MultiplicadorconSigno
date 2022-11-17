@@ -38,8 +38,8 @@ always #5 CLK100MHZ = ~CLK100MHZ;
 
 initial
 begin
-    A = 8'b11111000;
-    B = 8'b11111000;
+    A = 8'd8;
+    B = 8'd7;
     pb_entrada = 1;
     
     #10 $finish;

@@ -204,13 +204,9 @@ module mult_with_no_sm#(
         else
         begin
             if (mult_control.load_A)
-            begin
                 M <= A;
-            end
             else
-            begin
                 M <= M;
-            end
         end
     end
     
@@ -226,7 +222,7 @@ module mult_with_no_sm#(
     // shiftregisters
     always_comb
     begin
-        Y = {HQ,LQ} ;
+        Y = {HQ,LQ};
         HQ = shift [2*N:N+1];
         LQ = shift [N:1];
         Q_1 = shift [0];
@@ -244,7 +240,7 @@ module mult_with_no_sm#(
         begin
             if (mult_control.load_B)
                 shift [N:1] <= B;
-            if (mult_control.load_add)
+            else if (mult_control.load_add)
                 shift [2*N:N+1] <= adder_sub_out;
         end
     end

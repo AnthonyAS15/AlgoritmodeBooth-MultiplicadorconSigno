@@ -38,8 +38,8 @@ module top(
         if (pb_salida)
         begin
             valid <= pb_salida;
-            A_sinrebote <= multiplicador;
-            B_sinrebote <= multiplicando;
+                A_sinrebote <= multiplicador;
+                B_sinrebote <= multiplicando;
         end
         else if (reset)
         begin

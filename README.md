@@ -109,15 +109,17 @@ Diagrama que muestra cada uno de los estados que tendrá el circuito durante su 
 
 ## Análisis de consumo de recursos en la FPGA (LUTs, FFs, etc.) y del consumo de potencia (reporte de Vivado)
 
+![64a712ef-b2e6-4e4a-85cf-a9d8bd7c6914](https://user-images.githubusercontent.com/110042626/202401841-dc9488d9-f565-478a-96bd-5c7cc03dd65e.jpg)
 
 
 
 
 
-## Reporte de velocidades máximas de reloj 
-(mínima frecuencia de reloj para este diseño: 50 MHz).
+## Reporte de velocidades máximas de reloj (mínima frecuencia de reloj para este diseño: 50 MHz)
 
+![fec999c2-0f7b-4b42-b83f-d93c47712d88](https://user-images.githubusercontent.com/110042626/202401908-c0da8faa-1325-40ee-8775-2bd29a91f93e.jpg)
 
+![202389557-665d987d-8ea6-4e25-a6ad-9e7ce6dffcd3](https://user-images.githubusercontent.com/110042626/202401457-292c3aab-818d-431e-89f5-fb2f002ba7e9.jpg)
 
 
 
@@ -125,6 +127,8 @@ Diagrama que muestra cada uno de los estados que tendrá el circuito durante su 
 ## Análisis de principales problemas hallados durante el trabajo y de las soluciones aplicadas
 
 Dentro de las dificultades al realizar el subsistema 2 fue elaborar la máquina de estados de manera que concordara con la estructura que proporcionaba el profesor y manipular el código que él nos había pasado. Lo anterior llevó consigo distintas revisiones para lograr entenderlo, sin embargo, con el paso del tiempo se logró entender el código proporcionado y con ayuda del profesor, terminar de elaborar la máquina de estados.
+
+Uno de los problemas que tuvimos es que estábamos es que estábamos tomando las multiplicaciones como si fueran operaciones combinacionales, sin embargo, en algunos casos se debían de tomar las multiplicaciones como si fueran secuenciales, por lo tanto, tuvimos algunas complicaciones a la hora de hacerle el cambio con respecto al subsistema de multiplicación. No obstante, se realizaron los cambios correspondientes y pudimos arreglar dicho problema.
 
 De la misma manera, una de las dificultades fue que al realizar las simulaciones, estas no coincidian con lo observado al ejecutar el código en la Nexys, ya que en las simulaciones este estaba trabajando adecuadamente, mientras que en la placa esto no era así. A través de las estrategias de depuración y corrección de errores, inclusive con la ayuda del profesor, se logró solucionar el problema.
 

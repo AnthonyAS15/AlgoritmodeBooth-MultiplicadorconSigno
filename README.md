@@ -46,12 +46,12 @@ El subsistema de lectura tomrá las dos entradas y las convierte a complemento a
 
 ![198816232-9513c6d3-9dec-4847-9999-13ab040475af](https://user-images.githubusercontent.com/110042626/202111505-2065b016-055c-4129-badb-ab7373984a40.jpg)
 
-Dicho subsistema, tiene como entradas los switches A y B, dos botones(Push Botton y reset), y por salida tiene la operación aritmética de dicho algoritmo.
+Dicho subsistema, tiene como entradas los switches A y B, dos botones(Push Botton y reset), y por salida tiene los parametros de dicho algoritmo.
 
 
 ### Subsistema de cálculo de multiplicación
-Este sistema recibe los operandos A y B del subsistema de lectura anterior, y realiza una operación de multiplicación  por medio del Algoritmo de Booth. Finalmente este bloque indicará al siguiente bloque consecutivo cuando el resultado de la multiplicación está
-estable para ser muestreado.
+Este sistema recibe los operandos A y B del subsistema de lectura anterior, y realiza una operación de multiplicación  por medio del **Algoritmo de Booth**. Finalmente este bloque indicará al siguiente bloque consecutivo cuando el resultado de la multiplicación está estable para ser muestreado. Utilizando como entrada los parametros  los **Switches A y B**, y obteniendo en la salida el cálculo de la multiplicación.
+
 
 #### Diagrama de Bloques:
 
@@ -60,7 +60,7 @@ estable para ser muestreado.
 
 
 ### Subsistema conversión de binario a representación BCD
-Este sistema registrará el resultado del bloque anterior y lo convertirá en un formato BCD (Generando al menos 5 dígitos en BCD y uno de signo para el siguiente bloque). Se indicará al siguiente bloque cuando está lista la conversión para registrar.
+Este sistema registrará el resultado del bloque anterior y lo convertirá en un formato BCD (Generando al menos 5 dígitos en BCD y uno de signo para el siguiente bloque). Se indicará al siguiente bloque cuando está lista la conversión para registrar. Este subsistema tiene como entradas el resultado de multiplicacion del **Algoritmo de Booth** y por salida el resultado la convercion en BCD.
 
 #### Diagrama de Bloques:
 
@@ -114,7 +114,9 @@ Para ejemplificar, escogimos un caso de 4 bits para poner a prueba los subsistem
 
 ![2e585d89-b8e1-4eb6-ae50-8c59ff15e32e](https://user-images.githubusercontent.com/110042626/202411020-b0f51cfb-0ce4-4738-a76e-2a0507f98144.jpg)
 
-Seguidamente, para la realización del segundo subsistema, se toman los datos que ya tenemos para realizarle cálculo de la multiplicación, el cálculo de la multiplicación con signo se realizará de manera iterativa por medio del ***Algoritmo de Booth***. Este subsistema indicará al siguiente subsistema consecutivo cuando el resultado de la multiplicación está estable, en el tercer subsistema se registrará el resultado del bloque anterior *(16 bits con signo)* y lo convertirá en un formato BCD *(al menos 5 dígitos en BCD)*. Y en el ultimo subsistema, con el  resultado de la multiplicación en BCD se desplegara en el display de 7 segmentos; por medio del número obtenemos 2 valores, el ánodo es la parte positiva del LED dentro del panel y los cátodos la cantidad de paneles a utilizar, dependiendo de la base del número. Para el ejemplo se está utilizando *4 x 7*, solo se utiliza el primer panel 'bo', debió a que el número del ejemplo son solo 2 unidades, y se encienden las *LED* dentro del panel que representan el número *(28)*.
+Seguidamente, para la realización del segundo subsistema, se toman los datos que ya tenemos para realizarle cálculo de la multiplicación, el cálculo de la multiplicación con signo se realizará de manera iterativa por medio del ***Algoritmo de Booth***. Este subsistema indicará al siguiente subsistema consecutivo cuando el resultado de la multiplicación está estable, en el tercer subsistema se registrará el resultado del bloque anterior *(16 bits con signo)* y lo convertirá en un formato BCD *(al menos 5 dígitos en BCD)*. 
+
+Y en el ultimo subsistema, con el  resultado de la multiplicación en BCD se desplegara en el display de 7 segmentos; por medio del número obtenemos 2 valores, el ánodo es la parte positiva del LED dentro del panel y los cátodos la cantidad de paneles a utilizar, dependiendo de la base del número. Para el ejemplo se está utilizando *4 x 7*, solo se utiliza el primer panel 'bo', debió a que el número del ejemplo son solo 2 unidades, y se encienden las *LED* dentro del panel que representan el número *(28)*.
 
 
 **Representacion decimal display de 7 segmento:**

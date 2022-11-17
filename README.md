@@ -95,6 +95,11 @@ Diagrama que muestra cada uno de los estados que tendrá el circuito durante su 
 
 ### Diagramas de estado **Subsistema conversión de binario a representación BCD**:
 
+![3cer proyecto Diseno Logico-Página-15 drawio](https://user-images.githubusercontent.com/110042626/202399981-e9530995-720a-4941-9ebc-0e341181ce99.png)
+
+
+
+
 
 ## Ejemplo y análisis de una simulación funcional del sistema completo
 

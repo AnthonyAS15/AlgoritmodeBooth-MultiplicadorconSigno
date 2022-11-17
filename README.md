@@ -75,8 +75,10 @@ El subsistema va a tomar resultado de la multiplicación en BCD. Luego de esto, 
 
 ![201437213-a34185db-e395-4c00-8fea-3720e0567b5b](https://user-images.githubusercontent.com/110042626/202109207-119b76c9-b7c9-4aaa-898e-c77d8fda5d91.jpg)
 
+### Diagrama de bloques completo circuito Algoritmo de Booth
 
 
+![3cer proyecto Diseno Logico-COMPLETO drawio](https://user-images.githubusercontent.com/110042626/202388985-bfd61be5-2482-451d-be10-4800903df895.png)
 
 
 ## Diagramas de estado de las FSM diseñadas

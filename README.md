@@ -75,7 +75,7 @@ El subsistema va a tomar resultado de la multiplicación en BCD. Luego de esto, 
 
 ![201437213-a34185db-e395-4c00-8fea-3720e0567b5b](https://user-images.githubusercontent.com/110042626/202109207-119b76c9-b7c9-4aaa-898e-c77d8fda5d91.jpg)
 
-### Diagrama de bloques completo circuito Algoritmo de Booth
+### Diagrama de bloque completo del circuito Algoritmo de Booth:
 
 ![3cer proyecto Diseno Logico-COMPLETO drawio](https://user-images.githubusercontent.com/110042626/202390463-64c600bc-2a07-4324-9f6c-284dcd9550d6.png)
 
@@ -89,11 +89,11 @@ Es la representación completa del circuito con cada uno de los subsistemas  exi
 Diagrama que muestra cada uno de los estados que tendrá el circuito durante su utilización, e indica cuales requisitos existen para poder ingresar a cada caso de uso. Basicamente, el diagrama de estados nos indicara el proceso que que ejecutara la ruta de datos desde la salida hasta la entrada, con una descripción comportamental de cada sub-bloque dentro de los subsistemas.
 
 
-### Diagramas de estado **Subsistema de cálculo de multiplicación**
+### Diagramas de estado **Subsistema de cálculo de multiplicación**:
 
 ![201811087-cbd59364-3eaf-48af-992a-df780de26ffa](https://user-images.githubusercontent.com/110042626/202109231-7255fb0c-e2e1-49bc-abd8-68e1ee9d09cb.png)
 
-### Diagramas de estado **Subsistema conversión de binario a representación BCD**
+### Diagramas de estado **Subsistema conversión de binario a representación BCD**:
 
 
 ## Ejemplo y análisis de una simulación funcional del sistema completo

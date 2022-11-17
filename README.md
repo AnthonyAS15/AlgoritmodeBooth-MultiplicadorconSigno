@@ -46,7 +46,7 @@ El subsistema de lectura tomrá las dos entradas y las convierte a complemento a
 
 ![198816232-9513c6d3-9dec-4847-9999-13ab040475af](https://user-images.githubusercontent.com/110042626/202111505-2065b016-055c-4129-badb-ab7373984a40.jpg)
 
-
+Dicho subsistema, tiene como entradas los switches A y B, dos botones(Push Botton y reset), y por salida tiene la operación aritmética de dicho algoritmo.
 
 
 ### Subsistema de cálculo de multiplicación
@@ -74,6 +74,8 @@ El subsistema va a tomar resultado de la multiplicación en BCD. Luego de esto, 
 #### Diagrama de Bloques:
 
 ![201437213-a34185db-e395-4c00-8fea-3720e0567b5b](https://user-images.githubusercontent.com/110042626/202109207-119b76c9-b7c9-4aaa-898e-c77d8fda5d91.jpg)
+
+Dicho Subsistema, tiene como entradas el Subsistema conversión de binario a representación BCD y por salida tiene el display de 7 segmentos que muestra el resultado de la operación realizada.
 
 ### Diagrama de bloque completo del circuito Algoritmo de Booth:
 

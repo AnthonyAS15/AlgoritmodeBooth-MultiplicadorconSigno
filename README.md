@@ -102,7 +102,37 @@ Diagrama que muestra cada uno de los estados que tendrá el circuito durante su 
 
 
 
-## Ejemplo y análisis de una simulación funcional del sistema completo
+
+
+
+
+## Ejemplo y análisis de una simulación funcional
+
+Para ejemplificar, escogimos un caso de 4 bits para poner a prueba los subsistemas; para este caso se utilizó el ejemplo de hacer la multiplicaion con "4" y "7", siendo de esta manera "7" el multiplicando y "4" el multiplicador. Para ello ingresarlo utilizamos cuatro conmutadores, los cuatro switches, y los activamos en base a '0'=Switch abajo '1'=Switch arriba; los ingresamos como "4 = 0100" y "7 = 0111". Una vez ingresamos los parametros de entrada se hace uso del primer subsistema para representar su valor en binario, previamente obtenido, por medio de **luces LED**, de forma *'0'=LED apagada* y *'1'=LED encendida*.
+
+**Representacion binario en LED:**
+
+![2e585d89-b8e1-4eb6-ae50-8c59ff15e32e](https://user-images.githubusercontent.com/110042626/202411020-b0f51cfb-0ce4-4738-a76e-2a0507f98144.jpg)
+
+Seguidamente, para la realización del segundo subsistema, se toman los datos que ya tenemos para realizarle cálculo de la multiplicación, el cálculo de la multiplicación con signo se realizará de manera iterativa por medio del ***Algoritmo de Booth***. Este subsistema indicará al siguiente subsistema consecutivo cuando el resultado de la multiplicación está estable, en el tercer subsistema se registrará el resultado del bloque anterior *(16 bits con signo)* y lo convertirá en un formato BCD *(al menos 5 dígitos en BCD)*. Y en el ultimo subsistema, con el  resultado de la multiplicación en BCD se desplegara en el display de 7 segmentos; por medio del número obtenemos 2 valores, el ánodo es la parte positiva del LED dentro del panel y los cátodos la cantidad de paneles a utilizar, dependiendo de la base del número. Para el ejemplo se está utilizando *4 x 7*, solo se utiliza el primer panel 'bo', debió a que el número del ejemplo son solo 2 unidades, y se encienden las *LED* dentro del panel que representan el número *(28)*.
+
+
+**Representacion decimal display de 7 segmento:**
+
+![a4304fa5-fae9-4164-a679-0c5193d1189a](https://user-images.githubusercontent.com/110042626/202411051-be0db844-1be1-45d5-8da7-d9096a4de827.jpg)
+
+
+**Análisis de una simulación:**
+Elaboracion simulacion Testbench del ejemplo implementado, para obtener la simulacion a **nivel RTL**.
+
+![202319992-1b6be8fb-95fc-4b05-941c-ecfa51662186](https://user-images.githubusercontent.com/110042626/202411589-cd83703b-2b94-40e3-b2d4-a9c5c10dde1f.jpg)
+
+Como se observa en el resultado, el Waveform obtenido por Vivado nos representa como la entrada del ejemplo *4 x 7*, se lleva a cabo el cálculo de multiplicación binario, y lo convertirá en un formato BCD. Al final, el último subsistema se encarga de los cátodos y ánodos correspondientes que se encargan de generar el dígito, en este caso **28**.
+
+
+
+
+
 
 
 

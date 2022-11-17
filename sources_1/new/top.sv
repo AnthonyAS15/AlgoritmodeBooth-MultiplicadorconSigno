@@ -20,7 +20,7 @@ module top(
     output [6:0] catodo
     );
     
-    wire [7:0] multiplicador, multiplicando;
+    logic [7:0] multiplicador, multiplicando;
     logic pb_salida;
     logic [7:0] A_sinrebote, B_sinrebote;
     reg valid, done1;
@@ -61,7 +61,10 @@ module top(
         if (done1)
         begin
             signo <= Mult[15];
-            bin <= Mult[14:0];
+            if (signo)
+                bin <= -Mult[14:0]+1;
+            else
+                bin <= Mult[14:0];
         end
         else if (reset)
         begin

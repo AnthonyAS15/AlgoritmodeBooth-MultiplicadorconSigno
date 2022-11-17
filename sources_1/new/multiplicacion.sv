@@ -132,6 +132,7 @@ module maquina_estados (
             begin
                 mult_control.load_A <= 1;
                 mult_control.load_B <= 1;
+                done <= 1'b0;
             end
             Inicio:
             begin 

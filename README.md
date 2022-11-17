@@ -77,8 +77,12 @@ El subsistema va a tomar resultado de la multiplicación en BCD. Luego de esto, 
 
 ### Diagrama de bloques completo circuito Algoritmo de Booth
 
+![3cer proyecto Diseno Logico-COMPLETO drawio](https://user-images.githubusercontent.com/110042626/202390463-64c600bc-2a07-4324-9f6c-284dcd9550d6.png)
 
-![3cer proyecto Diseno Logico-COMPLETO drawio](https://user-images.githubusercontent.com/110042626/202388985-bfd61be5-2482-451d-be10-4800903df895.png)
+Es la representación completa del circuito con cada uno de los subsistemas  existentes, basicamente cada parte que conforma el diagrama. Cada uno de los subsistemas se encargan de cumplir la funcion determinaday en general cumplen con la funcion del circuito. Tiene como entrada los **Switches** [0:15], el **clock** y ambos **botones** (*Reset* y *Push Botton*), y por salidas tiene las **luces LED** que representan los datos de entrada y el **display de 7 segmentos** que muestra el resultado de la multiplicacion.
+
+
+
 
 
 ## Diagramas de estado de las FSM diseñadas

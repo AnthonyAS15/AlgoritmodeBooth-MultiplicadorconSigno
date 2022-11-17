@@ -146,6 +146,7 @@ Como se observa en el resultado, el Waveform obtenido por Vivado nos representa 
 ![64a712ef-b2e6-4e4a-85cf-a9d8bd7c6914](https://user-images.githubusercontent.com/110042626/202401841-dc9488d9-f565-478a-96bd-5c7cc03dd65e.jpg)
 
 
+![image](https://user-images.githubusercontent.com/73151507/202471580-93e03b0b-1ed1-45bb-96f9-c333f983d975.png)
 
 
 
